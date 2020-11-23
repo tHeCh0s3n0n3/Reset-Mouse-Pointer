@@ -16,21 +16,12 @@ namespace ResetMousePointer
 
         public static int Main(string[] args)
         {
-            bool debug = false;
-            if (args.Length > 1)
+            if (args.Length > 0)
             {
                 return -2;
             }
 
-            if (args.Length == 1)
-            {
-                if (!args[0].Equals("/debug"))
-                    return -2;
-                else
-                    debug = true;
-            }
-
-            bool success = SystemParametersInfo(SPI_SETCURSORS, 0, new IntPtr(), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
+            SystemParametersInfo(SPI_SETCURSORS, 0, new IntPtr(), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE);
 
             // Get the last error and display it.
             int errorCode = Marshal.GetLastWin32Error();
@@ -44,28 +35,10 @@ namespace ResetMousePointer
                 {
                     Source = eventSource
                 };
-                appLog.WriteEntry($"Failed with error code {errorCode}");
+                appLog.WriteEntry($"Failed with error code {errorCode}", EventLogEntryType.Error);
             }
 
-            if (debug)
-            {
-                if (!success || errorCode != 0)
-                {
-                    Console.WriteLine($"Last Error: {errorCode}");
-                }
-                else
-                {
-
-                    Console.WriteLine($"Success: {success}");
-                }
-
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
-            }
-
-            return (success || errorCode == 0
-                    ? 0
-                    : -1);
+            return errorCode;
         }
 
         private static string CreateEventSource(string currentAppName)
