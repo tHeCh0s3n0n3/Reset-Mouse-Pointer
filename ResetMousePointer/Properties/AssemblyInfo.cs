@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ResetMousePointer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Reset Mouse Pointer")]
+[assembly: AssemblyDescription("Pokes Windows so it rereads the mouse cursor values from the registry")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ResetMousePointer")]
+[assembly: AssemblyProduct("Reset Mouse Pointer")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
